@@ -4,7 +4,7 @@
   "description": "Task running unsystem. Execute functions exported by a module from the command line.",
   "main": "index.js",
   "bin": {
-    "bin.js"
+    "tu": "bin.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
