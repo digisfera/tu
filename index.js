@@ -28,10 +28,13 @@ module.exports = function(gutfilename) {
     throw(new Error("Gutfile not found"));
   }
 
-  var task = process.argv[2] || 'default';
+  var task = process.argv[2];
   var taskFun = gutfile[task];
   if(!taskFun){
-    throw(new Error("No such task: " + task))
+    var err = new Error("No such task: " + task);
+    err.code = 'NO_SUCH_TASK';
+    err.tasks = Object.keys(gutfile);
+    throw(err);
   }
   else {
     return taskFun();
