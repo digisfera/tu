@@ -16,5 +16,8 @@
     "build"
   ],
   "author": "Manuel Cabral (m.cabral@digisfera.pt)",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "coffee-script": "~1.6.3"
+  }
 }
