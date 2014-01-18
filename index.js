@@ -10,10 +10,13 @@ module.exports = function(gutfilename) {
 
   do {
     try {
-      gutfile = require(path.join(gutfilefolder, gutfilename));
+      moduleToRequire = path.join(gutfilefolder, gutfilename)
+      gutfile = require(moduleToRequire);
     }
     catch(e) {
-      if(e.code != 'MODULE_NOT_FOUND') { throw(e); }
+      if(e.code != 'MODULE_NOT_FOUND' || e.message.indexOf(moduleToRequire) === -1) {
+        throw(e);
+      }
     }
     finally {
       gutfilefolder = path.dirname(gutfilefolder);
