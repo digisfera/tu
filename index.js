@@ -25,7 +25,7 @@ module.exports = function(tufilename) {
   while(!tufile && path.dirname(tufilefolder) != tufilefolder);
 
   if(!tufile) {
-    throw(new Error("tufile not found"));
+    throw(new Error("Tufile not found"));
   }
 
   var task = process.argv[2];
