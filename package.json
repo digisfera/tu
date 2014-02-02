@@ -1,6 +1,6 @@
 {
   "name": "tu",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Task running unsystem. Execute functions exported by a module from the command line.",
   "main": "index.js",
   "bin": {
@@ -16,8 +16,16 @@
     "build"
   ],
   "author": "Manuel Cabral (m.cabral@digisfera.pt)",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "dependencies": {
     "coffee-script": "~1.6.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/digisfera/tu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digisfera/tu/issues"
+  },
+  "homepage": "https://github.com/digisfera/tu",
 }
