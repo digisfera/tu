@@ -39,7 +39,7 @@ Tufile.js
             log.cb("Replaced references in index.html and wrote <%= _.size(res) %> files"));
     }
 
-CLI
+Using it
 
     $ tu dev
     Server running on port 3001
