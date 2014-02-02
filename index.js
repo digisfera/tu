@@ -25,15 +25,27 @@ module.exports = function(tufilename) {
   while(!tufile && path.dirname(tufilefolder) != tufilefolder);
 
   if(!tufile) {
-    throw(new Error("Tufile not found"));
+    var err = new Error("Tufile not found");
+    err.code = 'TUFILE_NOT_FOUND';
+    throw(err);
   }
 
   var task = process.argv[2];
+  if(!task || task === '--help' || task === '-h'){
+    var err = new Error();
+    err.code = 'NO_TASK_DEFINED';
+    err.tasks = Object.keys(tufile);
+    err.file = moduleToRequire;
+    throw(err);
+  }
+
   var taskFun = tufile[task];
   if(!taskFun){
     var err = new Error("No such task: " + task);
     err.code = 'NO_SUCH_TASK';
     err.tasks = Object.keys(tufile);
+    err.file = moduleToRequire;
+    err.task = task;
     throw(err);
   }
   else {
