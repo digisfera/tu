@@ -9,6 +9,47 @@ tu is a simple module which allows you to:
 
 It can be used for the same purposes as [Grunt](http://gruntjs.com/) or [Gulp](http://gulpjs.com/). e.g. compile files, minify them, run a development server, upload to FTP or S3, etc.
 
+## Quick example
+
+Tufile.js
+
+    var log = require('callback-logger')(),
+        server = require('livereload-static-server'),
+        watchGlob = require('watch-glob'),
+        rimraf = require('rimraf'),
+        fs = require('fs-extra'),
+        useref = require('useref-file');
+
+    exports.dev = function() {
+        var livereload = server('tmp', 3001)
+        log.success("Server running on port 3001")
+
+        watchGlob('src/**/*', function(changedFile) {
+          livereload(changedFile.path);
+          log.success("Reloading")
+        });
+    }
+
+    exports.build = function() {
+        rimraf.sync('build');
+
+        fs.copy('src/images', 'build/images', log('Copied image folder'));
+
+        useref('src/index.html', 'build', { handlers: { js: 'uglify' } },
+            log.cb("Replaced references in index.html and wrote <%= _.size(res) %> files"));
+    }
+
+CLI
+
+    $ tu dev
+    Server running on port 3001
+    Reloading
+    Reloading
+
+    $ tu build
+    Replaced references in index.html and wrote 2 files
+    Copied image folder
+
 ## Helper modules
 
 Tasks commonly have files as input and other files as output. However, many node modules only expose an interface which uses streams or strings (as they rightfully should).
