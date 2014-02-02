@@ -49,6 +49,4 @@ catch(e) {
   else {
     console.error(e.stack);
   }
-  
-
 }
