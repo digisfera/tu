@@ -3,7 +3,7 @@ var coffee = require('coffee-script');
 
 
 module.exports = function(tufilename) {
-  var tufile = null;
+  var tufile = null, moduleToRequire = null;
 
   var tufilefolder = process.cwd();
 
@@ -23,12 +23,15 @@ module.exports = function(tufilename) {
     }
   }
   while(!tufile && path.dirname(tufilefolder) != tufilefolder);
+  tufilefolder = path.dirname(moduleToRequire);
 
   if(!tufile) {
     var err = new Error("Tufile not found");
     err.code = 'TUFILE_NOT_FOUND';
     throw(err);
   }
+  
+  process.chdir(tufilefolder);
 
   var task = process.argv[2];
   if(!task || task === '--help' || task === '-h'){
