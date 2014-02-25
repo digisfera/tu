@@ -1,6 +1,6 @@
 {
   "name": "tu",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Task running unsystem. Execute functions exported by a module from the command line.",
   "main": "index.js",
   "bin": {
